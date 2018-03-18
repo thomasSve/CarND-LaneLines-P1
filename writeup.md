@@ -33,10 +33,10 @@ The goals / steps of this project are the following:
 
 The pipeline to process image consisted of a total of 6 steps.
 
-First, I converted the images to grayscale.
+Firstly, I converted the input frame to grayscale
 ![alt text][gray_solidWhiteCurve] 
 
-I added gaussian blur with kernel size 5
+Next I added gaussian blur to 
 ![alt text][blur_solidWhiteCurve] 
 
 Next I performed edge detection using Canny with low threshold equal to 50 and high threshold 150.
@@ -45,26 +45,26 @@ Next I performed edge detection using Canny with low threshold equal to 50 and h
 Applied region of interest, cutting away uninterested information to focus on only current lines.
 ![alt text][roi_solidWhiteCurve]
 
-I performed hough transform that drew the lines
-![alt text][lines_solidWhiteCurve]
-
-Added the calculated lines on top of original picture, drawing a nice overlook over the images
-![alt text][solidWhiteCurve]
+Next I performed hough transform that drew and colored the lines nicely. When drawing these lines I splitted the lines into right and left lane. I calculated the slope of the lines, making the lines with negative slope belonging to left lane and positive slope belonging to right lane. I then added all these together, and used polyfit to draw one line over these point. For each line I used poly1d to get the polynomial function for the two lanes so I could select the starting point of each lane when x was 0 for left lane and x was equal to lane width as demonstrated in the drawing below.
 
 ![alt text][sdc_p1_drawing]
 
+Which resulted in the following lines
+
+![alt text][lines_solidWhiteCurve]
+
+Added the calculated lines on top of original picture, showing the lines nicely drawn
+![alt text][solidWhiteCurve]
 
 ### 2. Identify potential shortcomings with your current pipeline
 
-The current solution will only work the the lines have one straight line, and therefore struggle when in a turn. 
-
-One potential shortcoming would be what would happen when ... 
-
-Another shortcoming could be ...
+The current solution will only work the the lines have one straight line, and therefore struggle when the road turns. When tuning the parameters, I also notices that some parameters worked very well for some situations and bad for others, so it is difficult to find the perfect parameters for all situations, and thereby not a solid solution.  
+Also, this system will struggle more when the lanes are poorly marked, or even at night when it is dark.
 
 
 ### 3. Suggest possible improvements to your pipeline
 
-A possible improvement would be to ...
+One possible improvement is to implement a memory system that correlates the different frames in an image with eachother. Using the slope difference from each frame to decide which lanes to include. Especially when working on the challenge video I noticed how I was able to tune the parameters to make the lane run smoothly most of the time, but in some frames the lanes where jumping all over the place. Implementing a memory that compared the slope of the previous lanes could prevent the lanes jumping around on the image, making it more smooth and stable.
 
-Another potential improvement could be to ...
+Also another suggestion to improve the lanes in a line could be to instead of having the lane extrapolation in 1d line, try to draw a curved line to fit better especially in turns.
+
