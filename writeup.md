@@ -16,11 +16,11 @@ The goals / steps of this project are the following:
 [//]: # (Image References)
 
 [gray_solidWhiteCurve]: ./test_images_output/gray_solidWhiteCurve.jpg "Grayscale"
-[gray_solidWhiteRight]: ./test_images_output/gray_solidWhiteRight.jpg "Grayscale"
-[gray_solidYellowCurve]: ./test_images_output/gray_solidYellowCurve.jpg "Grayscale"
-[gray_solidYellowCurve2]: ./test_images_output/gray_solidYellowCurve2.jpg "Grayscale"
-[gray_solidYellowLeft]: ./test_images_output/gray_solidYellowLeft.jpg "Grayscale"
-[gray_whiteCarLaneSwitch]: ./test_images_output/gray_whiteCarLaneSwitch.jpg "Grayscale"
+[blur_solidWhiteCurve]: ./test_images_output/blur_solidWhiteCurve.jpg "Gaussian blur"
+[canny_solidWhiteCurve]: ./test_images_output/canny_solidWhiteCurve.jpg "Canny edge detection"
+[roi_solidWhiteCurve]: ./test_images_output/roi_solidWhiteCurve.jpg "Region of interest mask"
+[lines_solidWhiteCurve]: ./test_images_output/lines_solidWhiteCurve.jpg "Hough transform"
+[solidWhiteCurve]: ./test_images_output/solidWhiteCurve.jpg "End product"
 
 ---
 
@@ -28,9 +28,14 @@ The goals / steps of this project are the following:
 
 ### 1. Process image pipeline
 
-The pipeline to process image consisted of a total of 6 steps. First I converted the images into grayscale
+The pipeline to process image consisted of a total of 6 steps.
 
-![alt text][gray_solidWhiteCurve] ![alt text][gray_solidWhiteRight] ![alt text][gray_solidYellowCurve]
+![alt text][gray_solidWhiteCurve] 
+![alt text][blur_solidWhiteCurve] 
+![alt text][canny_solidWhiteCurve]
+![alt text][roi_solidWhiteCurve]
+![alt text][lines_solidWhiteCurve]
+![alt text][solidWhiteCurve]
 
 
 ### 2. Identify potential shortcomings with your current pipeline
