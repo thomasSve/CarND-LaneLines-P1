@@ -19,7 +19,8 @@ The goals / steps of this project are the following:
 [blur_solidWhiteCurve]: ./test_images_output/blur_solidWhiteCurve.jpg "Gaussian blur"
 [canny_solidWhiteCurve]: ./test_images_output/canny_solidWhiteCurve.jpg "Canny edge detection"
 [roi_solidWhiteCurve]: ./test_images_output/roi_solidWhiteCurve.jpg "Region of interest mask"
-[lines_solidWhiteCurve]: ./test_images_output/lines_solidWhiteCurve.jpg "Hough transform"
+[hough_solidWhiteCurve]: ./test_images_output/hough_solidWhiteCurve.jpg "Hough transform"
+[lines_solidWhiteCurve]: ./test_images_output/lines_solidWhiteCurve.jpg "Lines drawn"
 [solidWhiteCurve]: ./test_images_output/solidWhiteCurve.jpg "End product"
 
 # Drawing
@@ -33,26 +34,37 @@ The goals / steps of this project are the following:
 
 The pipeline to process image consisted of a total of 6 steps.
 
-Firstly, I converted the input frame to grayscale
+#### Grayscale
+Firstly, I converted the input frame to grayscale in order to significantly reduce the computational complexity. 
 ![alt text][gray_solidWhiteCurve] 
 
-Next I added gaussian blur to 
+#### Gaussian blur
+Next I applied gassian blur to the image that takes the pixels close to eachother, and sets the value of the pixel to be the average of the surronding pixels. 
 ![alt text][blur_solidWhiteCurve] 
 
-Next I performed edge detection using Canny with low threshold equal to 50 and high threshold 150.
+#### Canny edge detection
+After blurring together the pixels, we make it easier for our next step which is edge detection. We can now apply Canny algorithm, which uses the blurred pixel to detect edges on the image. 
 ![alt text][canny_solidWhiteCurve]
 
-Applied region of interest, cutting away uninterested information to focus on only current lines.
+#### Region of interest
+We are only interested in the lines of the image, and since we know where the lines traditionally shows on a image we can now cut away uninterested information and only focus on the region of interest.
 ![alt text][roi_solidWhiteCurve]
 
-Next I performed hough transform that drew and colored the lines nicely. When drawing these lines I splitted the lines into right and left lane. I calculated the slope of the lines, making the lines with negative slope belonging to left lane and positive slope belonging to right lane. I then added all these together, and used polyfit to draw one line over these point. For each line I used poly1d to get the polynomial function for the two lanes so I could select the starting point of each lane when x was 0 for left lane and x was equal to lane width as demonstrated in the drawing below.
+#### Hough transform
+Now we can move on to the final part, which is to detect the lines in the image. The hough transformation 
+
+![alt text][hough_solidWhiteCurve]
+
+#### Extrapolate, splitting into right and left lane
+As seen on the last image, the lanes are now successfully marked, however we want to merge the lines into a single right and left lane. We do this by calculating the slope of every line where the ones with positive slope belonging to the right lane, and negative slope left lane. Next we calculate the polynomial function for both lanes using the poly1d function in numpy. Using this function we can now select the starting and end point of the lines ourself, where each point is simply calculated using the function. To decide the starting and endpoint I drew up what the x value would have to be in both cases to make the lanes be drawn from beginning of image (or y = 0). 
 
 ![alt text][sdc_p1_drawing]
 
-Which resulted in the following lines
+As seen in this drawing I used the starting points x = 0 for left lane, and x = image-width for right lane and their end points being the last point detected by the hough transform. With these values we now have two long lanes drawn as shown in the following function.
 
 ![alt text][lines_solidWhiteCurve]
 
+#### Merged lines image with original image
 Added the calculated lines on top of original picture, showing the lines nicely drawn
 ![alt text][solidWhiteCurve]
 
