@@ -1,18 +1,5 @@
 # **Finding Lane Lines on the Road** 
 
-## Writeup Template
-
-### You can use this file as a template for your writeup if you want to submit it as a markdown file. But feel free to use some other method and submit a pdf if you prefer.
-
----
-
-**Finding Lane Lines on the Road**
-
-The goals / steps of this project are the following:
-* Make a pipeline that finds lane lines on the road
-* Reflect on your work in a written report
-
-
 [//]: # (Image References)
 
 [gray_solidWhiteCurve]: ./test_images_output/gray_solidWhiteCurve.jpg "Grayscale"
@@ -23,7 +10,6 @@ The goals / steps of this project are the following:
 [lines_solidWhiteCurve]: ./test_images_output/lines_solidWhiteCurve.jpg "Lines drawn"
 [solidWhiteCurve]: ./test_images_output/solidWhiteCurve.jpg "End product"
 
-# Drawing
 [sdc_p1_drawing]: sdc_p1_drawing.jpg "Drawing solution"
 
 ---
