@@ -42,7 +42,7 @@ Now we can move on to the final part, which is to detect the lines in the image.
 ![alt text][hough_solidWhiteCurve]
 
 #### Extrapolate, splitting into right and left lane
-As seen on the last image, the lanes are now successfully marked, however we want to merge the lines into a single right and left lane. We do this by calculating the slope of every line where the ones with positive slope belonging to the right lane, and negative slope left lane. We collect all the points for a certain lane, and calculate the polynomial function for this line. Using this function we can now select the starting and end point of the lines ourself, where each point is simply calculated using the function. To decide the starting and endpoint I drew up what the x value would have to be in both cases to make the lanes be drawn from beginning of image (or y = 0). 
+As seen on the last image, the lanes are now successfully marked, however we want to merge the lines into a single right and left lane. We do this by calculating the slope of every line where the ones with positive slope belonging to the right lane, and negative slope to the left lane. We collect all the points for a certain lane, and calculate the polynomial function for this line. Using this function we can now select the starting and end point of the lines ourself, where each point is simply calculated using the function. To decide the starting and endpoint I drew up what the x value would have to be in both cases to make the lanes be drawn from beginning of image (or y = 0). 
 
 ![alt text][sdc_p1_drawing]
 
