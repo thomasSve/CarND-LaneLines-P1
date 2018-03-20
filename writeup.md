@@ -33,20 +33,20 @@ After blurring together the pixels, we make it easier for our next step which is
 ![alt text][canny_solidWhiteCurve]
 
 #### Region of interest
-We are only interested in the lines of the image, and since we know where the lines traditionally shows on a image we can now cut away uninterested information and only focus on the region of interest.
+We are only interested in the lines of the image, and since we know where the lines will be relative to the image, we can cut away uninterested information and only focus on the region of interest.
 ![alt text][roi_solidWhiteCurve]
 
 #### Hough transform
-Now we can move on to the final part, which is to detect the lines in the image. The hough transformation 
+Now we can move on to the final part, which is to detect the lines in the image. The hough transformation uses the edges detected by the canny to find aligned points that together form a line. To do this, the hough transforms the points in imagespace into something called the Hough Space. In hough space, each points are represented as lines, and at the point where the lines crosses forms the function mx + b in image space.
 
 ![alt text][hough_solidWhiteCurve]
 
 #### Extrapolate, splitting into right and left lane
-As seen on the last image, the lanes are now successfully marked, however we want to merge the lines into a single right and left lane. We do this by calculating the slope of every line where the ones with positive slope belonging to the right lane, and negative slope left lane. Next we calculate the polynomial function for both lanes using the poly1d function in numpy. Using this function we can now select the starting and end point of the lines ourself, where each point is simply calculated using the function. To decide the starting and endpoint I drew up what the x value would have to be in both cases to make the lanes be drawn from beginning of image (or y = 0). 
+As seen on the last image, the lanes are now successfully marked, however we want to merge the lines into a single right and left lane. We do this by calculating the slope of every line where the ones with positive slope belonging to the right lane, and negative slope left lane. We collect all the points for a certain lane, and calculate the polynomial function for this line. Using this function we can now select the starting and end point of the lines ourself, where each point is simply calculated using the function. To decide the starting and endpoint I drew up what the x value would have to be in both cases to make the lanes be drawn from beginning of image (or y = 0). 
 
 ![alt text][sdc_p1_drawing]
 
-As seen in this drawing I used the starting points x = 0 for left lane, and x = image-width for right lane and their end points being the last point detected by the hough transform. With these values we now have two long lanes drawn as shown in the following function.
+As seen in this drawing I chose the x-value 0 left lane starting point with the maximum point as stop point. With the right lane going opposite direction (negative slope) the start-point is maximum x-value and stop x-value equal to image width. With these values we now have two long lanes drawn as shown in the following function.
 
 ![alt text][lines_solidWhiteCurve]
 
@@ -56,7 +56,7 @@ Added the calculated lines on top of original picture, showing the lines nicely 
 
 ### 2. Identify potential shortcomings with your current pipeline
 
-The current solution will only work the the lines have one straight line, and therefore struggle when the road turns. When tuning the parameters, I also notices that some parameters worked very well for some situations and bad for others, so it is difficult to find the perfect parameters for all situations, and thereby not a solid solution.  
+The current solution will only work the the lines have one straight line, and therefore struggle when the road turns. When tuning the parameters, I also notices that some parameters worked very well for some situations and bad for others, so it is difficult to find the perfect parameters for all situations, and thereby not a solid solution.
 Also, this system will struggle more when the lanes are poorly marked, or even at night when it is dark.
 
 
