@@ -56,13 +56,12 @@ Added the calculated lines on top of original picture, showing the lines nicely 
 
 ### 2. Identify potential shortcomings with your current pipeline
 
-The current solution will only work the the lines have one straight line, and therefore struggle when the road turns. When tuning the parameters, I also notices that some parameters worked very well for some situations and bad for others, so it is difficult to find the perfect parameters for all situations, and thereby not a solid solution.
-Also, this system will struggle more when the lanes are poorly marked, or even at night when it is dark.
+The current solution has parameters that is tuned for the specific situations in the project, and ones new situations comes along it will struggle without having to retune the parameter. Therefore it is very difficult to find the optimal parameters that makes the solution solid for many situations. For example, when testing on the challenge video I was able to tune it further to make it work better there, but then when going back to the previous videos the new parameters had worsened the results there.
 
 
 ### 3. Suggest possible improvements to your pipeline
 
-One possible improvement is to implement a memory system that correlates the different frames in an image with eachother. Using the slope difference from each frame to decide which lanes to include. Especially when working on the challenge video I noticed how I was able to tune the parameters to make the lane run smoothly most of the time, but in some frames the lanes where jumping all over the place. Implementing a memory that compared the slope of the previous lanes could prevent the lanes jumping around on the image, making it more smooth and stable.
+One possible improvement is to implement a memory system that correlates the different frames in an image with eachother. Using the slope difference from each frame to decide which lines to include when creating the lanes. Especially when working on the challenge video I noticed how I was able to tune the parameters to make the lane run smoothly most of the time, but in some frames the lanes where jumping all over the place. Implementing a memory that compared the slope of the previous lanes could prevent the lanes jumping around on the image, making it more smooth and stable. 
 
 Also another suggestion to improve the lanes in a line could be to instead of having the lane extrapolation in 1d line, try to draw a curved line to fit better especially in turns.
 
